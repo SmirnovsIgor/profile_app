@@ -21,11 +21,15 @@ jobs:
       - run:
           name: Check the code with rubocop
           command: bundle exec rubocop --auto-correct --disable-uncorrectable
+      # - run:
+      #     name: Run rspec
+      #     command: bundle exec rspec
+  deploy:
+    steps:
+      - checkout
       - run:
-          name: Run rspec
-          command: bundle exec rspec
-      - run:
-          name: Run app
-          command: bundle exec rackup
+          name: Deploy Master to Heroku
+          command: |
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
 # What to do next? Set up a test job. Please see
 # https://circleci.com/docs/2.0/configuration-reference/, for more  info on how to get started.
