@@ -20,7 +20,7 @@ jobs:
       - ruby/bundle-install
       - run:
           name: Check the code with rubocop
-          command: bundle exec rubocop -a
+          command: bundle exec rubocop --auto-correct --disable-uncorrectable
       - run:
           name: Run app
           command: bundle exec rackup
