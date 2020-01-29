@@ -26,7 +26,7 @@ module ProfileConfigSchema
         education: { type: 'string', minLength: 30 },
         past_job_experience: { type: 'string', minLength: 5 },
         location: { type: 'string' },
-        url_to_repo: {type: 'string', pattern: URI.regexp }
+        url_to_repo: {type: 'string', pattern: URI.regexp}
       ).freeze
     end
   end
