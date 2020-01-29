@@ -19,8 +19,10 @@ jobs:
           command: gem install bundler:2.0.2
       - ruby/bundle-install
       - run:
+          name: Check app using rubocop
+          command: rubocop
+      - run:
           name: Run app
           command: rackup
-
 # What to do next? Set up a test job. Please see
 # https://circleci.com/docs/2.0/configuration-reference/, for more  info on how to get started.
