@@ -19,8 +19,8 @@ jobs:
           command: gem install bundler:2.0.2
       - ruby/bundle-install
       - run:
-          name: Check app using rubocop
-          command: rubocop
+          name: Check the code with rubocop
+          command: bundle exec rubocop
       - run:
           name: Run app
           command: rackup
