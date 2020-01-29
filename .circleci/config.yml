@@ -15,11 +15,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Which bundler?
-          command: bundle -v
+          name: Install bundler?
+          command: gem install bundler:2.0.2
       - ruby/bundle-install
       - run:
-          name: run rack
+          name: Run app
           command: rackup
 
 # What to do next? Set up a test job. Please see
