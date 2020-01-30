@@ -23,8 +23,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Run rspec
-          command: bundle exec rspec
+        name: ls
+        command: ls
+      # - run:
+      #     name: Run rspec
+      #     command: bundle exec rspec
   rubocop:
     docker:
       - image: circleci/ruby:2.6.3-stretch-node
