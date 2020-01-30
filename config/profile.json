@@ -1,14 +1,14 @@
 {
   "location": "Minsk",
   "email": "smirnou.igor@gmail.com",
-  "goal": "sadjnbeprjbnweonrber",
-  "programming_languages": "erjkbrne;bj;ret",
-  "current_job": ";erjnb",
+  "goal": "Junior Backend Developer is seeking an opportunity to extend my skills and knowledge in DevOps and to become a professional DevOps engineer",
+  "programming_languages": "Python(primary), Bash, C++(student level), Javascript(student level), Ruby(syntax), GO(syntax)",
+  "current_job": "–",
   "laptop": "yes",
   "english": "b2",
-  "education": "BSU w;oegnveornve igbuiwebvliwrbvwrilthberlhtbvertlhbveorthbtel",
+  "education": "I'm a student at the Mechanics and Mathematics Faculty of the Belarusian State University. Department of Web-technologies and computer simulation",
   "phone_number": "+375291137195",
   "age": 19,
-  "past_job_experience": ";wqjrnvejrbnr;ehrn;rktbne;krtjnb;ekrtwpjbnrwtjbnwr;tj",
+  "past_job_experience": "Student's Lab(Department of python backend development) at iTechArt Group. Developed an analogue of Ticket Pro (Restful API). Stack of technologies: Python 3.7, Django, Django REST Framework, PostgreSQL, Celery, pytest, Docker",
   "url_to_repo": "https://github.com/SmirnovsIgor/"
 }

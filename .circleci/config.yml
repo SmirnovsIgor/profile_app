@@ -1,12 +1,8 @@
-# Ruby CircleCI 2.1 configuration file
-#
-# Check https://circleci.com/docs/2.0/ruby/ for more details
-#
 version: 2.1
 
 
 orbs:
-  ruby: circleci/ruby@0.1.2 # Ruby orb registry: https://circleci.com/orbs/registry/orb/circleci/ruby
+  ruby: circleci/ruby@0.1.2
 jobs:
   build:
     docker:
@@ -17,15 +13,8 @@ jobs:
           name: Install bundler
           command: gem install bundler:2.0.2
       - ruby/bundle-install
-      - run:
-          name: ls
-          command: ls
-      - persist_to_workspace: # Persist the specified paths (workspace/echo-output)
-      # into the workspace  for use in downstream job. Must be an absolute path,
-      # or relative path from working_directory. This is a directory on the container which is
-      # taken to be the root directory of the workspace.
+      - persist_to_workspace:
           root: /home/circleci/project
-            # Must be relative path from root
           paths:
             - .
   rspec:
@@ -33,18 +22,14 @@ jobs:
       - image: circleci/ruby:2.6.3-stretch-node
     steps:
       - attach_workspace:
-        # Must be absolute path or relative path from working_directory
           at: /home/circleci/project
       - run:
           name: Install bundler
           command: gem install bundler:2.0.2
       - ruby/bundle-install
       - run:
-          name: ls
-          command: ls vendor
-      # - run:
-      #     name: Run rspec
-      #     command: bundle exec rspec
+          name: Run rspec
+          command: bundle exec rspec
   rubocop:
     docker:
       - image: circleci/ruby:2.6.3-stretch-node
@@ -84,6 +69,3 @@ workflows:
           filters:
             branches:
               only: master
-
-# What to do next? Set up a test job. Please see
-# https://circleci.com/docs/2.0/configuration-reference/, for more  info on how to get started.
