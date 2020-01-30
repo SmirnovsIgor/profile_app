@@ -27,7 +27,7 @@ jobs:
   rspec:
     docker:
       - image: circleci/ruby:2.6.3-stretch-node
-    working_directory: ~/profile_app
+    working_directory: /home/circleci/project
     steps:
       - run:
           name: Run rspec
