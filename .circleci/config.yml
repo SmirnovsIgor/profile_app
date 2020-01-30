@@ -48,10 +48,10 @@ workflows:
     jobs:
       - build
       - rspec
-        requires:
+          requires:
           - build
       - rubocop
-        requires:
+          requires:
           - rspec
       - deploy:
           requires:
