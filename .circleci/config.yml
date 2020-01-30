@@ -20,7 +20,7 @@ jobs:
       - ruby/bundle-install
       - run:
           name: see working_directory
-          command: ls
+          command: pwd
       - run:
           name: Run rspec
           command: bundle exec rspec
