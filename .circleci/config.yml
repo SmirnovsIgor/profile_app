@@ -22,13 +22,15 @@ jobs:
           name: Run rspec
           command: bundle exec rspec
   rspec:
-    docker: circleci/ruby:2.6.3-stretch-node
+    docker:
+      - image: circleci/ruby:2.6.3-stretch-node
     steps:
       - run:
           name: Run rspec
           command: bundle exec rspec
   rubocop:
-    docker: circleci/ruby:2.6.3-stretch-node
+    docker:
+      - image: circleci/ruby:2.6.3-stretch-node
     steps:
       - run:
           name: Check the code with rubocop
@@ -48,7 +50,11 @@ workflows:
     jobs:
       - build
       - rspec
+          requires:
+            - build
       - rubocop
+          requires:
+            - rspec
       - deploy
 # workflows:
 #   version: 2
