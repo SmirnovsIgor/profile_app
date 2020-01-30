@@ -30,6 +30,9 @@ jobs:
     working_directory: /home/circleci/project
     steps:
       - run:
+          name: see_working working_directory
+          command: pwd
+      - run:
           name: Run rspec
           command: bundle exec rspec
   rubocop:
