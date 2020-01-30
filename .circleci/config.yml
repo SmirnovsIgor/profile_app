@@ -23,8 +23,8 @@ jobs:
     steps:
       - checkout
       - run:
-        name: ls
-        command: ls
+          name: ls
+          command: ls
       # - run:
       #     name: Run rspec
       #     command: bundle exec rspec
