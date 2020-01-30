@@ -23,7 +23,8 @@ jobs:
       # taken to be the root directory of the workspace.
           root: /home/circleci/project
             # Must be relative path from root
-            path: .
+          paths:
+            - .
   rspec:
     docker:
       - image: circleci/ruby:2.6.3-stretch-node
