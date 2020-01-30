@@ -33,7 +33,7 @@ jobs:
           name: Run rspec
           command: bundle exec rspec
   rspec:
-    executor: my-executor
+    <<: *container_config
     steps:
       - run:
           name: see_working working_directory
@@ -45,7 +45,7 @@ jobs:
       #     name: Run rspec
       #     command: bundle exec rspec
   rubocop:
-    executor: my-executor
+    <<: *container_config
     steps:
       - run:
           name: Check the code with rubocop
