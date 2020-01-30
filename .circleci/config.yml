@@ -17,6 +17,9 @@ jobs:
           name: Install bundler
           command: gem install bundler:2.0.2
       - ruby/bundle-install
+      - run:
+          name: ls
+          command: ls
       - persist_to_workspace: # Persist the specified paths (workspace/echo-output)
       # into the workspace  for use in downstream job. Must be an absolute path,
       # or relative path from working_directory. This is a directory on the container which is
