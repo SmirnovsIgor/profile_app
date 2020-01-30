@@ -8,10 +8,15 @@ version: 2.1
 orbs:
   ruby: circleci/ruby@0.1.2 # Ruby orb registry: https://circleci.com/orbs/registry/orb/circleci/ruby
 
-jobs:
-  build:
+executors:
+  my-executor:
     docker:
       - image: circleci/ruby:2.6.3-stretch-node
+    working_directory: /home/circleci/project
+
+jobs:
+  build:
+    executor: my-executor
     steps:
       - checkout
       - run:
@@ -25,9 +30,7 @@ jobs:
           name: Run rspec
           command: bundle exec rspec
   rspec:
-    docker:
-      - image: circleci/ruby:2.6.3-stretch-node
-    working_directory: /home/circleci/project
+    executor: my-executor
     steps:
       - run:
           name: see_working working_directory
@@ -39,8 +42,7 @@ jobs:
       #     name: Run rspec
       #     command: bundle exec rspec
   rubocop:
-    docker:
-      - image: circleci/ruby:2.6.3-stretch-node
+    executor: my-executor
     steps:
       - run:
           name: Check the code with rubocop
