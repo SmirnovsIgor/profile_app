@@ -19,11 +19,20 @@ jobs:
           command: gem install bundler:2.0.2
       - ruby/bundle-install
       - run:
-          name: Check the code with rubocop
-          command: bundle exec rubocop --auto-correct --disable-uncorrectable
+          name: Run rspec
+          command: bundle exec rspec
+  rspec:
+    docker: circleci/ruby:2.6.3-stretch-node
+    steps:
       - run:
           name: Run rspec
           command: bundle exec rspec
+  rubocop:
+    docker: circleci/ruby:2.6.3-stretch-node
+    steps:
+      - run:
+          name: Check the code with rubocop
+          command: bundle exec rubocop --auto-correct --disable-uncorrectable
   deploy:
     docker:
       - image: buildpack-deps:trusty
@@ -38,9 +47,15 @@ workflows:
   build-deploy:
     jobs:
       - build
+      - rspec
+        requires:
+          - build
+      - rubocop
+        requires:
+          - rspec
       - deploy:
           requires:
-            - build
+            - rspec
           filters:
             branches:
               only: master
