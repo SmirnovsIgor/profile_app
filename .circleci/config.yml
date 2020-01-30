@@ -7,26 +7,31 @@ version: 2.1
 
 orbs:
   ruby: circleci/ruby@0.1.2 # Ruby orb registry: https://circleci.com/orbs/registry/orb/circleci/ruby
-references:
-  attach_workspace: &attach_workspace
-    attach_workspace:
-      at: /home/circleci/project
 jobs:
   build:
     docker:
       - image: circleci/ruby:2.6.3-stretch-node
     steps:
       - checkout
-      - *attach_workspace
       - run:
           name: Install bundler
           command: gem install bundler:2.0.2
       - ruby/bundle-install
+      - persist_to_workspace: # Persist the specified paths (workspace/echo-output)
+      # into the workspace  for use in downstream job. Must be an absolute path,
+      # or relative path from working_directory. This is a directory on the container which is
+      # taken to be the root directory of the workspace.
+          root: /home/circleci/
+            # Must be relative path from root
+          paths:
+            - project
   rspec:
     docker:
       - image: circleci/ruby:2.6.3-stretch-node
     steps:
-      - *attach_workspace
+      - attach_workspace:
+        # Must be absolute path or relative path from working_directory
+          at: /home/circleci/project
       - run:
           name: ls
           command: ls -a
@@ -37,7 +42,9 @@ jobs:
     docker:
       - image: circleci/ruby:2.6.3-stretch-node
     steps:
-      - *attach_workspace
+      - attach_workspace:
+        # Must be absolute path or relative path from working_directory
+          at: /home/circleci/project
       - run:
           name: Check the code with rubocop
           command: bundle exec rubocop --auto-correct --disable-uncorrectable
