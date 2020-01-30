@@ -36,6 +36,10 @@ jobs:
         # Must be absolute path or relative path from working_directory
           at: /home/circleci/project
       - run:
+          name: Install bundler
+          command: gem install bundler:2.0.2
+      - ruby/bundle-install
+      - run:
           name: ls
           command: ls vendor
       # - run:
@@ -47,6 +51,10 @@ jobs:
     steps:
       - attach_workspace:
           at: /home/circleci/project
+      - run:
+          name: Install bundler
+          command: gem install bundler:2.0.2
+      - ruby/bundle-install
       - run:
           name: Check the code with rubocop
           command: bundle exec rubocop --auto-correct --disable-uncorrectable
