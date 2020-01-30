@@ -19,6 +19,9 @@ jobs:
           command: gem install bundler:2.0.2
       - ruby/bundle-install
       - run:
+          name: see working_directory
+          command: ls
+      - run:
           name: Run rspec
           command: bundle exec rspec
   rspec:
