@@ -1,3 +1,4 @@
+
 # Ruby CircleCI 2.1 configuration file
 #
 # Check https://circleci.com/docs/2.0/ruby/ for more details
@@ -7,19 +8,11 @@ version: 2.1
 
 orbs:
   ruby: circleci/ruby@0.1.2 # Ruby orb registry: https://circleci.com/orbs/registry/orb/circleci/ruby
-references:
-  container_config: &container_config
-    docker:
-      - image: circleci/ruby:2.6.3-stretch-node
-    working_directory: /home/circleci/project
-  workspace_root: &workspace_root
-    /tmp/workspace
-  attach_workspace: &attach_workspace
-    attach_workspace:
-      at: *workspace_root
+
 jobs:
   build:
-    <<: *container_config
+    docker:
+      - image: circleci/ruby:2.6.3-stretch-node
     steps:
       - checkout
       - run:
@@ -27,29 +20,11 @@ jobs:
           command: gem install bundler:2.0.2
       - ruby/bundle-install
       - run:
-          name: see working_directory
-          command: pwd
-      - run:
-          name: Run rspec
-          command: bundle exec rspec
-  rspec:
-    <<: *container_config
-    steps:
-      - run:
-          name: see_working working_directory
-          command: pwd
-      - run:
-          name: ls
-          command: ls -a
+          name: Check the code with rubocop
+          command: bundle exec rubocop --auto-correct --disable-uncorrectable
       # - run:
       #     name: Run rspec
       #     command: bundle exec rspec
-  rubocop:
-    <<: *container_config
-    steps:
-      - run:
-          name: Check the code with rubocop
-          command: bundle exec rubocop --auto-correct --disable-uncorrectable
   deploy:
     docker:
       - image: buildpack-deps:trusty
@@ -64,18 +39,11 @@ workflows:
   build-deploy:
     jobs:
       - build
-      - rspec:
-          requires:
-            - build
-      - rubocop:
-          requires:
-            - rspec
       - deploy:
           requires:
-            - rubocop
+            - build
           filters:
             branches:
               only: master
-
 # What to do next? Set up a test job. Please see
 # https://circleci.com/docs/2.0/configuration-reference/, for more  info on how to get started.
