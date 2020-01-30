@@ -37,7 +37,7 @@ jobs:
           at: /home/circleci/project
       - run:
           name: ls
-          command: ls -a
+          command: ls vendor
       # - run:
       #     name: Run rspec
       #     command: bundle exec rspec
