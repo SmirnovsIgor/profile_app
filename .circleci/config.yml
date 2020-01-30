@@ -24,7 +24,7 @@ jobs:
       - checkout
       - run:
           name: ls
-          command: ls
+          command: ls -a
       # - run:
       #     name: Run rspec
       #     command: bundle exec rspec
