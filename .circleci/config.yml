@@ -32,6 +32,9 @@ jobs:
       - run:
           name: see_working working_directory
           command: pwd
+      - run:
+          name: ls
+          command: ls -a
       # - run:
       #     name: Run rspec
       #     command: bundle exec rspec
